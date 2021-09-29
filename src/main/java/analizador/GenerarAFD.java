@@ -87,9 +87,8 @@ public class GenerarAFD {
 
         while (posicion < palabra.length()) 
             getToken();
-        /*
-         * for (char caracter : palabra.toCharArray()) { System.out.println(caracter); }
-         */
+        textarea.setEditable(false);
+        return;
 
        
     }
@@ -150,12 +149,15 @@ public class GenerarAFD {
         String res = "Error";
         int indice = 0;
         for (int estadoAceptacion : estadosFinalizacion) {
-            
-            if (estadoAceptacion == i){
+            try {
+                if (estadoAceptacion == i){
                 
                 res = descripcionFinalizacion[indice];
                 break;
             }
+            } catch (Exception e) {
+            }
+            
             indice++;
         }
       
@@ -178,24 +180,14 @@ public class GenerarAFD {
                 // para mi automata
                 int estadoTemporal = getSiguienteEstado(estadoActual, getIntCaracter(tmp));   
                 System.out.println("Estado actual " + estadoActual + " caracter "+ tmp + " transicion a "+estadoTemporal);
-                this.textarea.append("Estado actual " + estadoActual + " caracter[ "+ tmp + "]  transicion a "+estadoTemporal+"\n");
+                this.textarea.append("Estado actual " + estadoActual + " caracter es------> "+ tmp+" <-----   transicion a "+estadoTemporal+"\n");
                 token+=tmp;
                  estadoActual= estadoTemporal;
                 System.out.println(tmp);
             }
             posicion++;
         }
-       // System.out.println("*********Termino en el estado "+ getEstadoAceptacion(estadoActual) + " token actual : "+token);
-        if(getEstadoAceptacion(estadoActual).equals("Error"))
-        {
-             this.contErrores=this.contErrores+1;
-         //    System.out.println("Cantidad de errores "+contErrores+"------"+token);
-             
-        } 
-        else {
-        //this.texttokenes.append(" Token-----"+getEstadoAceptacion(estadoActual)+ "  lexama-----"+token+"\n");
-         }
-        
+       
         
     }
 }

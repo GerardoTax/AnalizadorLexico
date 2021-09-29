@@ -181,6 +181,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         this.jTextArea2.setText("");
         this.jTextArea3.setText("");
         this.analizador.analizar();
+        this.generarAFD= new GenerarAFD(jTextArea1,jTextArea3);
         this.generarAFD.Main(this.jTextArea1.getText());
         
         if(this.analizador.listErrores.size()==0){

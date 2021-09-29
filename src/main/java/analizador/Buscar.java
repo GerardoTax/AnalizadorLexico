@@ -31,10 +31,6 @@ public class Buscar {
             String caracteres = texto;
             Pattern p = Pattern.compile("(?i)" + caracteres);
             Matcher m = p.matcher(text);
-            if(m !=p.matcher(text)){
-                 JOptionPane.showMessageDialog(area1, "la palabra a buscar no existe");
-            }
-            
             while (m.find()) {
                 try {
                     

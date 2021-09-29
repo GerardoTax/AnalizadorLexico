@@ -2,6 +2,8 @@
 package analizador;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
 
 /**
  *
@@ -11,7 +13,7 @@ public class Analizador {
  private VentanaInicio ventana;
  ArrayList <String> listErrores = new ArrayList <String>();
  ArrayList <String> listLexema = new ArrayList <String>();
- ArrayList <String> listToken = new ArrayList <String>();
+ ArrayList <String> list= new ArrayList <String>();
   int inidice=0;
   int estado=0;
   String lexema="";
@@ -71,9 +73,9 @@ public class Analizador {
                    lexema=""+letra;
                }
                else {
-                 // buscarpalabra(this.jTextArea1, String.valueOf(letra));
+               bs.buscarError(ventana.getjTextArea1(),String.valueOf(letra));
                System.out.println("Error Lexico   "+letra);
-               listErrores.add(""+letra);
+               listErrores.add("Error el carcater no existe en el alfabeto   "+letra);
                }
                
                break;
@@ -98,7 +100,7 @@ public class Analizador {
                   System.out.println("Error  ---"+letra);
                   lexema="";
                   estado=0;
-                  //indice--;
+                
                }
                break;
                
@@ -119,37 +121,32 @@ public class Analizador {
                     indice--;
                }
                else {
-                  // buscarpalabra(this.jTextArea1, String.valueOf(letra));
+                  bs.buscarError(ventana.getjTextArea1(),String.valueOf(lexema+letra));
                   listLexema.add(lexema);
                   System.out.println("Error Lexico   "+letra);
-                  listErrores.add(""+letra);
+                  listErrores.add("Se esperava un numero o un punto   " +lexema+letra);
                   lexema="";
                   estado=0;
-                  indice--;
+                 
                }
                 
                break;
                
            case 3:
                if(Character.isDigit(letra)){
-                        estado=3;
+                        estado=7;
                         lexema=lexema+letra;
                         
                   }
-               else if(letra==' '| letra=='\n' ){
-                    listLexema.add("Token:  Decimal    Lexema:  "+lexema);
-                    lexema="";
-                    estado=0;
-                    indice--;
-               }
+           
               else {
-                 // buscarpalabra(this.jTextArea1, String.valueOf(letra));
+                   bs.buscarError(ventana.getjTextArea1(),String.valueOf(lexema+letra));
                   listLexema.add(lexema);
                   System.out.println("Error Lexico   "+letra);
-                  listErrores.add(""+letra);
+                  listErrores.add("Error se esperaba un numero "+lexema+letra);
                   lexema="";
                   estado=0;
-                  indice--;
+                 
                   
                }
                
@@ -161,16 +158,16 @@ public class Analizador {
                     listLexema.add("Token: Puntuacion    Lexema:  "+lexema);
                     lexema="";
                     estado=0;
-                    indice--;
+                    
                   }
                else {
-                   //buscarpalabra(this.jTextArea1, String.valueOf(letra));
+                   bs.buscarError(ventana.getjTextArea1(),String.valueOf(lexema+letra));
                     listLexema.add(lexema);
                     System.out.println("Error Lexico   "+letra);
-                    listErrores.add(""+letra);
+                    listErrores.add("Se esperaba un espacio "+lexema+letra);
                     lexema="";
                     estado=0;
-                    indice--;
+                    
                }
                break;
            case 5:
@@ -180,13 +177,13 @@ public class Analizador {
                     estado=0;
                   }
                else {
-                   // buscarpalabra(this.jTextArea1, String.valueOf(letra));
+                  //  bs.buscarError(ventana.getjTextArea1(),String.valueOf(lexema+letra));
                     listLexema.add(lexema);
                     System.out.println("Error Lexico   "+letra);
-                    listErrores.add(""+letra);
+                    listErrores.add("se esperaba un espacio "+lexema+letra);
                     lexema="";
                     estado=0;
-                    indice--;
+               
                }
                break;
            case 6:
@@ -196,15 +193,39 @@ public class Analizador {
                     estado=0;
                   }
                else {
-                   // buscarpalabra(this.jTextArea1, String.valueOf(letra));
+                  //  bs.buscarError(ventana.getjTextArea1(),String.valueOf(lexema+letra));
                     listLexema.add(lexema);
                     System.out.println("Error Lexico   "+letra);
-                    listErrores.add("Error Lexico "+letra);
+                    listErrores.add("Error se esperaba  un espacio  "+lexema+letra);
                     lexema="";
                     estado=0;
-                    indice--;
+                   
                }
                 
+               break;
+           case 7:
+               if(Character.isDigit(letra)){
+                        estado=7;
+                        lexema=lexema+letra;
+                        
+                  }
+               else if(letra==' '| letra=='\n'  ){
+                    listLexema.add("Token:  Decimal    Lexema:  "+lexema);
+                    lexema="";
+                    estado=0;
+                   
+               }
+               
+              else {
+                  bs.buscarError(ventana.getjTextArea1(),String.valueOf(lexema+letra));
+                  listLexema.add(lexema);
+                  System.out.println("Error Lexico   "+letra);
+                  listErrores.add("Error se esperaba una digito o un espacio "+lexema+letra);
+                  lexema="";
+                  estado=0;
+                 
+                  
+               }
                break;
                
            default:
@@ -220,6 +241,7 @@ public class Analizador {
             this.ventana.getjTextArea2().append(lis+"\n");
         }
         this.ventana.getVerErrores().setVisible(false);
+        this.ventana.getjTextArea2().setEditable(false);
     }
     
     public void imprimirLexemas(){
@@ -228,6 +250,49 @@ public class Analizador {
             this.ventana.getjTextArea2().append(lis+"\n");
         
         }
+       // contarLexemas();
         this.ventana.getVerToken().setVisible(false);
+        this.ventana.getjTextArea2().setEditable(false);
+        
+    }
+    
+    public void contarLexemas(){
+        for(int i=0; i<listLexema.size();i++){
+             int cont=0;
+             for(int j=0;j<listLexema.size();j++){
+                    if(listLexema.get(i).equals(listLexema.get(j))){
+                        cont++;
+                        System.out.println(listLexema.get(i));
+                         
+                        if(agregarlista(listLexema.get(i))){
+                            list.add(list.get(i));
+                        }
+                    }
+             
+            }
+            if(list.get(i).equals(null)){
+            }
+            else {
+             System.out.println(list.get(i)+"se repite "+cont);
+            }
+        }
+       
+    }
+    
+    public boolean agregarlista(String campo){
+       ArrayList al = new ArrayList(listLexema.size());
+        for(int i=0;i<al.size();i++){
+          if(al.get(i).equals(campo)){
+              return false;
+          }
+        }
+        return true;
+  }
+    
+    public void repetidos(){
+     for(int i=0; i<list.size(); i++){
+         System.out.println(list.get(i));
+         
+    }
     }
 }
