@@ -236,6 +236,7 @@ public class Analizador {
   }
   
     public void imprimirError(){
+        
         for(int i=0; i<this.listErrores.size();i++){
             String lis= listErrores.get(i);
             this.ventana.getjTextArea2().append(lis+"\n");
@@ -245,54 +246,54 @@ public class Analizador {
     }
     
     public void imprimirLexemas(){
+        ventana.getjTextArea2().setText("");
         for(int i=0; i<this.listLexema.size(); i++){
              String lis= listLexema.get(i);
             this.ventana.getjTextArea2().append(lis+"\n");
         
         }
-       // contarLexemas();
-        this.ventana.getVerToken().setVisible(false);
+        contarLexemas();
+        
+       // this.ventana.getVerToken().setVisible(false);
         this.ventana.getjTextArea2().setEditable(false);
         
     }
     
     public void contarLexemas(){
-        for(int i=0; i<listLexema.size();i++){
-             int cont=0;
-             for(int j=0;j<listLexema.size();j++){
-                    if(listLexema.get(i).equals(listLexema.get(j))){
-                        cont++;
-                        System.out.println(listLexema.get(i));
-                         
-                        if(agregarlista(listLexema.get(i))){
-                            list.add(list.get(i));
-                        }
-                    }
-             
+        
+        for(int i=0; i<listLexema.size() ;i++){
+            int cont=0;
+            String texto="";
+            for(int j=0;j<listLexema.size();j++){
+                if(listLexema.get(i).equals(listLexema.get(j))){
+                    cont++;
+                    texto=listLexema.get(i);
+                } 
             }
-            if(list.get(i).equals(null)){
-            }
-            else {
-             System.out.println(list.get(i)+"se repite "+cont);
-            }
-        }
-       
+            agregarlista(texto+" cantidad de vez: "+cont);
+        }    
     }
     
-    public boolean agregarlista(String campo){
-       ArrayList al = new ArrayList(listLexema.size());
-        for(int i=0;i<al.size();i++){
-          if(al.get(i).equals(campo)){
-              return false;
-          }
-        }
-        return true;
-  }
-    
-    public void repetidos(){
-     for(int i=0; i<list.size(); i++){
-         System.out.println(list.get(i));
+    public  void agregarlista(String campo){
+       if(list.contains(campo)){
+       
+       }
+       else {
+           list.add(campo);
+       }
+        
          
     }
+  
+    
+    public void repetidos(){
+        ventana.getjTextArea2().setText("");
+        for(int i=0; i<list.size(); i++){
+             System.out.println("------"+list.get(i));
+              this.ventana.getjTextArea2().append(list.get(i)+"\n");
+        }
     }
+    
+    
+   
 }

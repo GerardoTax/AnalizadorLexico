@@ -32,6 +32,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         this.jTextArea2.setVisible(false);
         this.verToken.setVisible(false);
         this.VerErrores.setVisible(false);
+        this.jButton2.setVisible(false);
         this.analizador=new Analizador(this);
         this.cargaArchivo=new CargaArchivo();
         this.generarAFD= new GenerarAFD(jTextArea1,jTextArea3);
@@ -58,6 +59,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +120,13 @@ public class VentanaInicio extends javax.swing.JFrame {
         jTextArea3.setRows(5);
         jScrollPane3.setViewportView(jTextArea3);
 
+        jButton2.setText("Recuento de lexemas");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,7 +145,9 @@ public class VentanaInicio extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(jButton5)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,7 +156,7 @@ public class VentanaInicio extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(114, 114, 114)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +168,8 @@ public class VentanaInicio extends javax.swing.JFrame {
                     .addComponent(jButton4)
                     .addComponent(jButton3)
                     .addComponent(jButton5)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
@@ -180,16 +192,24 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.jTextArea2.setText("");
         this.jTextArea3.setText("");
+        this.analizador.listLexema.clear();
+        this.analizador.listErrores.clear();
+       
+        this.verToken.setVisible(false);
+        this.jButton2.setVisible(false);
+        this.VerErrores.setVisible(false);
         this.analizador.analizar();
         this.generarAFD= new GenerarAFD(jTextArea1,jTextArea3);
         this.generarAFD.Main(this.jTextArea1.getText());
         
         if(this.analizador.listErrores.size()==0){
             this.verToken.setVisible(true);
+            this.jButton2.setVisible(true);
         }
-        else 
+        else {
             this.VerErrores.setVisible(true);
-        
+            
+        }
         
        
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -197,8 +217,8 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void verTokenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verTokenActionPerformed
         this.jTextArea2.setVisible(true);
         this.analizador.imprimirLexemas();
-        this.analizador.listLexema.clear();
-              this.analizador.listErrores.clear();
+        //this.analizador.listLexema.clear();
+             // this.analizador.listErrores.clear();
         
     }//GEN-LAST:event_verTokenActionPerformed
 
@@ -237,6 +257,10 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.analizador.repetidos();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public JButton getjButton1() {
         return VerErrores;
@@ -322,6 +346,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton VerErrores;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
