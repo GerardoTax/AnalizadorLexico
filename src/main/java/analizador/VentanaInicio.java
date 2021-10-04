@@ -60,8 +60,10 @@ public class VentanaInicio extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         VerErrores.setText("Ver Errores");
         VerErrores.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +71,7 @@ public class VentanaInicio extends javax.swing.JFrame {
                 VerErroresActionPerformed(evt);
             }
         });
+        getContentPane().add(VerErrores, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 58, -1, -1));
 
         verToken.setText("Ver Token y Lexemas");
         verToken.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +79,7 @@ public class VentanaInicio extends javax.swing.JFrame {
                 verTokenActionPerformed(evt);
             }
         });
+        getContentPane().add(verToken, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 58, -1, -1));
 
         jButton3.setText("Analizar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +87,7 @@ public class VentanaInicio extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 58, -1, -1));
 
         jButton4.setText("Cargar Archivo ");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +95,7 @@ public class VentanaInicio extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 58, -1, -1));
 
         jButton5.setText("Exportar Archivo");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -97,16 +103,21 @@ public class VentanaInicio extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(604, 58, -1, -1));
 
         jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 110, 566, 377));
+
         jTextArea2.setBackground(new java.awt.Color(255, 255, 204));
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(627, 110, 353, 377));
 
         jButton1.setText("Buscar Palabra");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -114,11 +125,14 @@ public class VentanaInicio extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 58, 112, -1));
 
         jTextArea3.setBackground(new java.awt.Color(204, 255, 255));
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
         jScrollPane3.setViewportView(jTextArea3);
+
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 514, 731, -1));
 
         jButton2.setText("Recuento de lexemas");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -126,58 +140,22 @@ public class VentanaInicio extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 58, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jButton3)
-                        .addGap(36, 36, 36)
-                        .addComponent(VerErrores)
-                        .addGap(36, 36, 36)
-                        .addComponent(verToken)
-                        .addGap(42, 42, 42)
-                        .addComponent(jButton4)
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1030, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(VerErrores)
-                    .addComponent(verToken)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jButton5)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 660, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 660));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -194,7 +172,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         this.jTextArea3.setText("");
         this.analizador.listLexema.clear();
         this.analizador.listErrores.clear();
-       
+       this.analizador.list.clear();
+        
         this.verToken.setVisible(false);
         this.jButton2.setVisible(false);
         this.VerErrores.setVisible(false);
@@ -350,6 +329,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

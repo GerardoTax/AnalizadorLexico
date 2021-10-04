@@ -124,7 +124,7 @@ public class Analizador {
                   bs.buscarError(ventana.getjTextArea1(),String.valueOf(lexema+letra));
                   listLexema.add(lexema);
                   System.out.println("Error Lexico   "+letra);
-                  listErrores.add("Se esperava un numero o un punto   " +lexema+letra);
+                  listErrores.add("Se esperava un numero    " +lexema+letra);
                   lexema="";
                   estado=0;
                  
